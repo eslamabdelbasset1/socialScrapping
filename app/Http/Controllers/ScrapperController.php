@@ -11,7 +11,6 @@ class ScrapperController extends Controller
     {
         return view('welcome');
     }
-
     public function search(Request $request)
     {
         $content = Http::get("https://www.instagram.com/{$request->search}")->body();

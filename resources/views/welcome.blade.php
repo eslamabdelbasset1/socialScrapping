@@ -31,12 +31,16 @@
            </div>
 
            <div class="col-md-8">
-            @if(isset($finalResult))
-                @foreach($finalResult as $item)
-                    <h2>{{$item}}</h2>
-                @endforeach
-            @endif
+               <div class="form-control">
+                   @if(isset($finalResult))
+                       @foreach($finalResult as $item)
+                           <h2>{{$item}}</h2>
+                       @endforeach
+                   @endif
+               </div>
+
            </div>
+
        </div>
 
    </div>
