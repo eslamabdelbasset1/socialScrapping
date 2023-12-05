@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{username}', [ScrapperController::class , 'index']);
+Route::get('/', [ScrapperController::class , 'index']);
+Route::post('/search-result', [ScrapperController::class , 'search'])->name('search');

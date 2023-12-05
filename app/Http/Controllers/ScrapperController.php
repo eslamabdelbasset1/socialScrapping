@@ -7,14 +7,18 @@ use Illuminate\Support\Facades\Http;
 
 class ScrapperController extends Controller
 {
-    public function index(Request $request, $username)
+    public function index()
     {
+        return view('welcome');
+    }
 
-        $content = Http::get("https://www.instagram.com/{$username}")->body();
-
+    public function search(Request $request)
+    {
+        $content = Http::get("https://www.instagram.com/{$request->search}")->body();
         $content2 = preg_match('/meta content="([^"]+)"/', $content, $results);
-
-         dd($results[1] , explode(', ',$results[1]));
+        $finalResult = (explode(', ',$results[1]));
+        return view('welcome', compact('finalResult'));
+//         dd($results[1] , explode(', ',$results[1]));
 
 
     }
