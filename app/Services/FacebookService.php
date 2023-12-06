@@ -16,11 +16,12 @@ class FacebookService
     }
 
 
-    public function getProfile($username)
+    public function getProfile($username): array
     {
 
-        $this->httpClient->get('');
-
+        $content = $this->httpClient->get("https://www.facebook.com/{$username}",[]);
+        preg_match('/content="([^"]+)"/', $content, $results);
+        return (explode(', ', $results[1]));
     }
 
 

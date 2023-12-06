@@ -12,12 +12,20 @@ use Illuminate\Support\Facades\Http;
 
 class ScrapperController extends Controller
 {
+    //Concrete Class
+    //Dependency Injection DI
+    //Service Pattern
+    //Repositories Pattern
+
     protected InstagramService $instagramService;
+    protected FacebookService $facebookService;
 
     public function __construct()
     {
 
         $this->instagramService = new InstagramService(new LaravelHttpClient());
+
+        $this->facebookService = new FacebookService(new LaravelHttpClient());
 
     }
 
@@ -28,12 +36,13 @@ class ScrapperController extends Controller
 
     public function search(Request $request)
     {
-        //Concrete Class
-        //Dependency Injection DI
-        //Service Pattern
-        //Repositories Pattern
-
-        $finalResult = $this->instagramService->getProfile($request->search);
-        return view('welcome', compact('finalResult'));
+        if ($request->input('mode') == 'instagram') {
+            $finalResult = $this->instagramService->getProfile($request->mode, $request->search);
+            return view('welcome', compact('finalResult'));
+        }
+        elseif ($request->input('mode') == 'facebook')
+        {
+            $finalResult = $this->facebookService->getProfile($request->mode, $request->search);
+            return view('welcome', compact('finalResult'));        }
     }
 }

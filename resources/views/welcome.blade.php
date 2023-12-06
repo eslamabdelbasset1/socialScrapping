@@ -15,13 +15,26 @@
 
 
    <div class="container mt-5">
+       <label for="exampleFormControlInput1" class="form-label">Search</label>
+
        <div class="row">
            <div class="col-md-4 center">
                <form action="{{ route('search') }}" method="POST">
                    @csrf
                    <div class="form-control">
-                       <div class="mb-3">
-                           <label for="exampleFormControlInput1" class="form-label">Search</label>
+                       <div class="mx-3">
+                           <div class="dropdown">
+                               <button class="btn btn-white dropdown-toggle"
+                                       type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                   Select App
+                               </button>
+                               <select name="mode" id="mode" class="form-control">
+                                   <option class="dropdown-item" value="instagram">Instagram</option>
+                                   <option class="dropdown-item" value="facebook">Facebook</option>
+                               </select>
+                           </div>
+                       </div>
+                       <div class="m-3">
                            <input type="search" name="search" class="form-control" id="search"
                                   placeholder="Search">
                            <input type="submit" CLASS="mt-2 bg-danger">
