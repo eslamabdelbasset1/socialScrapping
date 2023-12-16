@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Modules\Instagram\app\Services;
 
 use App\Contracts\HttpClientInterface;
 
@@ -23,6 +23,5 @@ class InstagramService
         $content = $this->httpClient->get("https://www.instagram.com/{$username}",[]);
         preg_match('/meta content="([^"]+)"/', $content, $results);
         return (explode(', ', $results[1]));
-
     }
 }

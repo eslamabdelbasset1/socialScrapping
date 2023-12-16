@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Clients\GuzzleHttpClient;
 use App\Clients\LaravelHttpClient;
 use App\Services\FacebookService;
-use App\Services\InstagramService;
-use App\Services\TiktokService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Modules\Instagram\app\Services\InstagramService;
 
 class ScrapperController extends Controller
 {
@@ -25,7 +24,7 @@ class ScrapperController extends Controller
 
         $this->instagramService = new InstagramService(new LaravelHttpClient());
 
-        $this->facebookService = new FacebookService(new LaravelHttpClient());
+        $this->facebookService = new FacebookService(new GuzzleHttpClient());
 
     }
 
@@ -43,6 +42,9 @@ class ScrapperController extends Controller
         elseif ($request->input('mode') == 'facebook')
         {
             $finalResult = $this->facebookService->getProfile($request->mode, $request->search);
-            return view('welcome', compact('finalResult'));        }
+            return view('welcome', compact('finalResult'));
+        }
+        else
+            return "";
     }
 }
