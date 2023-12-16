@@ -9,10 +9,10 @@ return new class extends Migration {
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('followers');
             $table->string('following');
-            $table->string('profile_picture');
+            $table->string('profile_picture')->nullable();
             $table->unsignedBigInteger('platform_id');
             $table->timestamps();
         });

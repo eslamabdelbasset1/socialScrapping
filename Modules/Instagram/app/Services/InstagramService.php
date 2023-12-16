@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Modules\Instagram\app\Services;
 
 use App\Contracts\HttpClientInterface;
 
