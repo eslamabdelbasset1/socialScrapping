@@ -5,14 +5,17 @@ namespace Modules\Instagram\app\Http\Controllers;
 use App\Clients\GuzzleHttpClient;
 use App\Clients\LaravelHttpClient;
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Modules\Instagram\app\Resources\InstagramCollection;
 use Modules\Instagram\app\Resources\InstagramResource;
 use Modules\Instagram\app\Services\InstagramService;
 
 class InstagramController extends Controller
 {
     protected InstagramService $instagramService;
+
     public function __construct()
     {
         $this->instagramService = new InstagramService(new LaravelHttpClient());
@@ -25,13 +28,19 @@ class InstagramController extends Controller
     {
         return view('instagram::index');
     }
-    public function search(Request $request,$slug)
+
+    public function search($slug)
     {
         $finalResult = $this->instagramService->getProfile($slug);
-        return new InstagramResource($finalResult);
+        $data = new InstagramResource($finalResult);
+        Profile::create($data->toArray(request()));
+        return $data;
     }
 
-
+    public function getData()
+    {
+        return InstagramCollection::collection(Profile::all());
+    }
 
     /**
      * Show the form for creating a new resource.

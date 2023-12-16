@@ -20,3 +20,4 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function 
 });
 
 Route::post('/{slug}', [InstagramController::class , 'search']);
+Route::get('/data', [InstagramController::class , 'getData']);
