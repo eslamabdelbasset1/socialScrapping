@@ -15,7 +15,7 @@
 
 
    <div class="container mt-5">
-       <label for="exampleFormControlInput1" class="form-label">Search</label>
+       <label for="exampleFormControlInput1" class="form-label">{{$search}}</label>
 
        <div class="row">
            <div class="col-md-4 center">
@@ -26,7 +26,7 @@
                            <div class="dropdown">
                                <button class="btn btn-white dropdown-toggle"
                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Select App
+                                  {{$select_app}}
                                </button>
                                <select name="mode" id="mode" class="form-control">
                                    <option class="dropdown-item" value="instagram">Instagram</option>
